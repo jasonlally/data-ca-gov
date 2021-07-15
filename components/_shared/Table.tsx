@@ -1,33 +1,44 @@
+import { useTable } from 'react-table'
+
 interface TableProps {
   columns: Array<any>;
   data: Array<any>;
-  className?: string;
 }
 
-const Table: React.FC<TableProps> = ({ columns, data, className }) => {
+const Table: React.FC<TableProps> = ({ columns, data }) => {
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({
+    columns,
+    data,
+  })
+
   return (
-    <table className={`table-auto w-full text-sm text-left my-6 ${className}`}>
+    <table {...getTableProps()}>
       <thead>
-        <tr>
-          {columns.map(({ key, name }) => (
-            <th key={key} className="px-4 py-2">
-              {name}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item) => (
-          <tr key={item.id}>
-            {columns.map(({ key, render }) => (
-              <td key={key} className="px-4 py-2">
-                {(render && typeof render === 'function' && render(item)) ||
-                  item[key] ||
-                  ''}
-              </td>
+        {headerGroups.map(headerGroup => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map(column => (
+              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
             ))}
           </tr>
         ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row, i) => {
+          prepareRow(row)
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map(cell => {
+                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              })}
+            </tr>
+          )
+        })}
       </tbody>
     </table>
   );

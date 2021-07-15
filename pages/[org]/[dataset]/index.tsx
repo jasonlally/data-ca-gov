@@ -10,7 +10,6 @@ import { GET_DATASET_QUERY } from '../../../graphql/queries';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
-
   if (loading) return <div>Loading</div>;
   const { result } = data.dataset;
 
@@ -20,14 +19,25 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
         <title>Portal | {result.title || result.name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
+      <header className="bg-primary-background">
+        <div className="container mx-auto">
+          <Nav />
+        </div>
+      </header>
       <main className="p-6">
-        <h1 className="text-3xl font-semibold text-primary mb-2">
-          {result.title || result.name}
-        </h1>
-        <Org variables={variables} />
-        <About variables={variables} />
-        <Resources variables={variables} />
+        <div className="container mx-auto">
+          <h1 className="text-3xl font-semibold text-primary mb-0">
+            {result.title || result.name}
+          </h1>
+          <div className="flex flex-wrap -mx-2 overflow-hidden">
+            <div className="mb-2 px-2 w-1/2 overflow-hidden">
+              <About variables={variables} />
+            </div>
+            <div className="mb-2 px-2 w-1/2 overflow-hidden">
+              <Resources variables={variables} />
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );

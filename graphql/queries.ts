@@ -14,16 +14,46 @@ export const GET_ORG_QUERY = gql`
   }
 `;
 
+export const GET_DATASTORE_QUERY = gql`
+  query data($id: String) {
+    datastore(resource_id: $id) @rest(type: "Data", path: "datastore_search?{args}") {
+      result {
+        fields
+        records
+        _links {
+          start
+          next
+        }
+        total
+      }
+    }
+  }
+`;
+
 export const GET_DATAPACKAGE_QUERY = gql`
   query dataset($id: String) {
     dataset(id: $id) @rest(type: "Response", path: "package_show?{args}") {
       result {
         name
         title
-        size
+        notes
         metadata_created
         metadata_modified
         resources {
+          id
+          name
+          size
+          format
+          url
+        }
+        organization {
+          name
+          title
+        }
+        groups {
+          display_name
+          image_display_url
+          title
           name
         }
       }
@@ -36,10 +66,16 @@ export const GET_RESOURCES_QUERY = gql`
     dataset(id: $id) @rest(type: "Response", path: "package_show?{args}") {
       result {
         name
+        organization {
+          name
+        }
         resources {
+          id
           name
           title
           format
+          url
+          size
           created
           last_modified
         }
@@ -114,6 +150,7 @@ export const GET_DATASET_QUERY = gql`
         metadata_created
         metadata_modified
         resources {
+          id
           name
           title
           format

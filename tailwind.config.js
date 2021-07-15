@@ -14,12 +14,11 @@ module.exports = {
   ],
   mode: 'jit',
   theme: {
-    fontSize: {
-      tiny: 'var(--font-size-small)',
-      md: 'var(--font-size-medium)',
-      lg: 'var(--font-size-large)',
-    },
     extend: {
+      fontFamily: {
+        body: ['Roboto','sans-serif'],
+        headers: ['Montserrat','sans-serif']
+      },
       colors: {
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
@@ -29,6 +28,11 @@ module.exports = {
         'sec-background': 'var(--background-sec)',
         'primary-text': 'var(--color-text-primary)',
       },
+      fontSize: {
+        tiny: 'var(--font-size-small)',
+        md: 'var(--font-size-medium)',
+        lg: 'var(--font-size-large)',
+      }
     },
     backgroundColor: (theme) => ({
       ...theme('colors'),

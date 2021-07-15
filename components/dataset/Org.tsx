@@ -14,7 +14,7 @@ const OrgInfo: React.FC<{ variables: any }> = ({ variables }) => {
 
   if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <div>Loading</div>;
-
+  //todo: abstract this
   const { organization } = data.dataset.result;
 
   return <Org organization={organization} />;

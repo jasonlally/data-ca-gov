@@ -1,10 +1,10 @@
 export default {
-  primary: '#896A00',
-  secondary: '#254E70',
+  primary: '#05429F',
+  secondary: '#ff8002',
   black: '#0C0C0C',
   positive: '#0C0C0C',
   textPrimary: '#896A00',
-  backgroundPrimary: '#FAEEC5',
+  backgroundPrimary: '#1f2574',
 
   // Define font size variables
   fontSmall: '18px',
