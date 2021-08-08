@@ -35,6 +35,14 @@ export interface Descriptor {
   updated: string;
   licence: string;
   sources: Array<any>;
+  accrualPeriodicity: string;
+  organization: any;
+  groups: Array<any>;
+  notes: string;
+  contact_email: string;
+  contact_name: string;
+  metadata_created: string;
+  metadata_modified: string;
 }
 
 type Props = {
@@ -82,9 +90,7 @@ const Metadata: React.FC<Props> = ({ descriptor, resources }) => {
         <Topic topic={descriptor.groups[0].display_name} />
         <h2 className="text-2xl">Description</h2>
         <div className="prose mb-4">
-          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-            {description}
-          </ReactMarkdown>
+          <ReactMarkdown>{description}</ReactMarkdown>
         </div>
         {supportFilesList.length > 0 && (
           <div className="mb-4">

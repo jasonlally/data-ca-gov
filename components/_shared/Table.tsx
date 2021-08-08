@@ -151,7 +151,7 @@ const Table: React.FC<TableProps> = ({
           />
         </span>{' '}
         <select
-          value={perPage}
+          defaultValue={perPage}
           onBlur={(e) => {
             requestData(currentPage, Number(e.target.value));
           }}

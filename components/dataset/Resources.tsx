@@ -95,7 +95,12 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
                 </Tab.List>
                 <Tab.Panels>
                   <Tab.Panel>
-                    {'Get started below'}
+                    <p>
+                      {
+                        'Use the simple query web API to retrieve data with a set of basic parameters. Start by copying the endpoint below.'
+                      }
+                    </p>
+                    <p className="font-bold">{'API Endpoint'}</p>
                     <div className="flex items-center">
                       <input
                         className="w-full bg-gray-200 appearance-none border-2 border-gray-200 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-accent-bright"
@@ -124,7 +129,12 @@ const Resources: React.FC<{ variables: any }> = ({ variables }) => {
                         />
                       </CopyToClipboard>
                     </div>
-                    {'And more...'}
+                    <a
+                      className="underline text-blue-600"
+                      href="https://docs.ckan.org/en/latest/maintaining/datastore.html#ckanext.datastore.logic.action.datastore_search"
+                    >
+                      {'Read the documentation'}
+                    </a>
                   </Tab.Panel>
                   <Tab.Panel>
                     {'Get started below'}
