@@ -8,9 +8,9 @@ const NavBar: React.FC = () => {
     { title: 'GitHub', path: 'https://github.com/datopian/portal.js' },
   ];
 
-  return <Nav logo={'/images/logo.svg'} navMenu={navMenu} bgColor="blue-900" />;
+  return (
+    <Nav logo={'/images/logo.svg'} navMenu={navMenu} bgColor="blue-900" />
+  );
 };
 
 export default NavBar;
-
-
