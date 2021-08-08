@@ -164,7 +164,7 @@ When visiting a dataset page, you may want to fetch the dataset metadata in the 
 ```javascript
 import { GetServerSideProps } from 'next';
 import { initializeApollo } from '../lib/apolloClient';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 const QUERY = gql`
   query dataset($id: String) {
@@ -201,8 +201,7 @@ This would fetch the data from DMS and save it in the Apollo cache so that we ca
 Consider situation when rendering a component for org info on the dataset page. We already have pre-fetched dataset metadata that includes `organization` property with attributes such as `name`, `title` etc. We can now query only organization part for our `Org` component:
 
 ```javascript
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { useQuery, gql } from '@apollo/client';
 
 export const GET_ORG_QUERY = gql`
   query dataset($id: String) {

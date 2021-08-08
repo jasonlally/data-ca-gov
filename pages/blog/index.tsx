@@ -8,7 +8,7 @@ import { GET_POSTS_QUERY } from '../../graphql/queries';
 const PostList: React.FC = () => (
   <>
     <Head>
-      <title>Portal | Blog</title>
+      <title>California Open Data | Blog</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Nav />

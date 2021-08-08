@@ -1,10 +1,13 @@
 import { useQuery } from '@apollo/client';
-import Item from './Item';
-import { ErrorMessage } from '../_shared';
-import { SEARCH_QUERY } from '../../graphql/queries';
+import { ErrorMessage } from '.';
+import { GET_TOTAL_COUNT_QUERY } from '../../graphql/queries';
+import ItemTotal from './search/Total';
 
-const List: React.FC<{ variables: any }> = ({ variables }) => {
-  const { loading, error, data } = useQuery(SEARCH_QUERY, {
+const Total: React.FC<{ variables: any; modifier?: string }> = ({
+  variables,
+  modifier,
+}) => {
+  const { loading, error, data } = useQuery(GET_TOTAL_COUNT_QUERY, {
     variables,
     // Setting this value to true will make the component rerender when
     // the "networkStatus" changes, so we are able to know if it is fetching
@@ -14,14 +17,10 @@ const List: React.FC<{ variables: any }> = ({ variables }) => {
 
   if (error) return <ErrorMessage message="Error loading search results." />;
   if (loading) return <div>Loading</div>;
+
   const { result } = data.search;
-  return (
-    <ul>
-      {result.results.map((pkg, index) => (
-        <Item datapackage={pkg} key={index} />
-      ))}
-    </ul>
-  );
+
+  return <ItemTotal count={result.count} modifier={modifier} />;
 };
 
-export default List;
+export default Total;

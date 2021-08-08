@@ -15,7 +15,7 @@ type Props = {
 const Search: React.FC<Props> = ({ variables }) => (
   <>
     <Head>
-      <title>Portal | Search</title>
+      <title>California Open Data | Search</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <header className="bg-primary-background">

@@ -1,5 +1,5 @@
 import parse from 'html-react-parser';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { ErrorMessage } from '../_shared';
 import { GET_POSTS_QUERY } from '../../graphql/queries';
 

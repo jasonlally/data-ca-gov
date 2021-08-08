@@ -1,12 +1,14 @@
 import { GetServerSideProps } from 'next';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import Head from 'next/head';
 import { initializeApollo } from '../../../lib/apolloClient';
 import Nav from '../../../components/home/Nav';
 import About from '../../../components/dataset/About';
-import Org from '../../../components/dataset/Org';
 import Resources from '../../../components/dataset/Resources';
-import { GET_DATASET_QUERY } from '../../../graphql/queries';
+import {
+  GET_DATASET_QUERY,
+  GET_RESOURCES_QUERY,
+} from '../../../graphql/queries';
 
 const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   const { data, loading } = useQuery(GET_DATASET_QUERY, { variables });
@@ -16,7 +18,7 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
   return (
     <>
       <Head>
-        <title>Portal | {result.title || result.name}</title>
+        <title>California Open Data | {result.title || result.name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="bg-primary-background">
@@ -30,10 +32,10 @@ const Dataset: React.FC<{ variables: any }> = ({ variables }) => {
             {result.title || result.name}
           </h1>
           <div className="flex flex-wrap -mx-2 overflow-hidden">
-            <div className="mb-2 px-2 w-1/2 overflow-hidden">
+            <div className="mb-2 px-2 w-1/2 overflow-hidden z-0">
               <About variables={variables} />
             </div>
-            <div className="mb-2 px-2 w-1/2 overflow-hidden">
+            <div className="mb-2 px-2 w-1/2 z-0">
               <Resources variables={variables} />
             </div>
           </div>
@@ -51,6 +53,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   await apolloClient.query({
     query: GET_DATASET_QUERY,
+    variables,
+  });
+
+  await apolloClient.query({
+    query: GET_RESOURCES_QUERY,
     variables,
   });
 

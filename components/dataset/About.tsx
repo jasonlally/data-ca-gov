@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { ErrorMessage } from '../_shared';
 import { GET_DATAPACKAGE_QUERY } from '../../graphql/queries';
-import KeyInfo from '../_shared/dataset/Metadata';
+import Metadata from '../_shared/dataset/Metadata';
 
 const About: React.FC<{ variables: any }> = ({ variables }) => {
   const { loading, error, data } = useQuery(GET_DATAPACKAGE_QUERY, {
@@ -15,10 +15,8 @@ const About: React.FC<{ variables: any }> = ({ variables }) => {
   if (error) return <ErrorMessage message="Error loading dataset." />;
   if (loading) return <div>Loading</div>;
 
-  
-
   const { result } = data.dataset;
-  return <KeyInfo descriptor={result} resources={result.resources} />;
+  return <Metadata descriptor={result} resources={result.resources} />;
 };
 
 export default About;

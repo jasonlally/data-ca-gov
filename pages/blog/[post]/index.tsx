@@ -12,7 +12,7 @@ type Props = {
 const PostItem: React.FC<Props> = ({ variables }) => (
   <>
     <Head>
-      <title>Portal | {variables.slug}</title>
+      <title>California Open Data | {variables.slug}</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Nav />

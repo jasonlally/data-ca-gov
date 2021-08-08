@@ -16,6 +16,9 @@ export const mapTheme = (variables: ITheme): IMappedTheme => {
   return {
     '--color-primary': variables.primary || '',
     '--color-secondary': variables.secondary || '',
+    '--color-accent-light': variables.accentLight || '',
+    '--color-accent-bright': variables.accentBright || '',
+    '--color-accent-neutral': variables.accentNeutral || '',
     '--color-positive': variables.positive || '',
     '--color-negative': variables.negative || '',
     '--color-text-primary': variables.textPrimary || '',

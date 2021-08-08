@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { ErrorMessage } from '../_shared';
 import { GET_ORG_QUERY } from '../../graphql/queries';
 import { Org } from 'portal';

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { ErrorMessage } from '../_shared';
 import { SEARCH_QUERY } from '../../graphql/queries';
 import { Recent } from 'portal';

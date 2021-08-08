@@ -6,8 +6,17 @@
   body {
     @apply font-body;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-headers;
+  }
+  th,
+  td {
+    font-weight: normal;
   }
   .ca-data-logo {
     width: 300px;
@@ -15,14 +24,14 @@
   .ca-data-logo .st0 {
     stroke: #ff8002;
     fill: #ff8002;
-    transition: fill .5s cubic-bezier(.57, .2, .21, .89);
-    transition: stroke .5s cubic-bezier(.57, .2, .21, .89);
+    transition: fill 0.5s cubic-bezier(0.57, 0.2, 0.21, 0.89);
+    transition: stroke 0.5s cubic-bezier(0.57, 0.2, 0.21, 0.89);
   }
   .ca-data-logo .st1 {
     stroke: #fff;
     fill: #fff;
-    transition: fill .5s cubic-bezier(.57, .2, .21, .89);
-    transition: stroke .5s cubic-bezier(.57, .2, .21, .89);
+    transition: fill 0.5s cubic-bezier(0.57, 0.2, 0.21, 0.89);
+    transition: stroke 0.5s cubic-bezier(0.57, 0.2, 0.21, 0.89);
   }
   .ca-data-logo:hover .st0 {
     stroke: #fff;
@@ -58,5 +67,11 @@
   }
   .material-icons.md-light.md-inactive {
     color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@layer utilities {
+  .border-spacing-0 {
+    border-spacing: 0;
   }
 }

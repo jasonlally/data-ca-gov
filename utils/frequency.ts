@@ -1,0 +1,25 @@
+const frequencyMap = {
+  'R/P10Y': 'decennially',
+  'R/P4Y': 'quadrennially',
+  'R/P1Y': 'annually',
+  'R/P2M': 'bimonthly',
+  'R/P3.5D': 'semiweekly',
+  'R/P1D': 'daily',
+  'R/P2W': 'biweekly',
+  'R/P0.5W': 'biweekly',
+  'R/P6M': 'semiannually',
+  'R/P2Y': 'biennially',
+  'R/P3Y': 'triennially',
+  'R/P0.33W': 'three times a week',
+  'R/P0.33M': 'three times a month',
+  'R/PT1S': 'continuously',
+  'R/P1M': 'monthly',
+  'R/P3M': 'quarterly',
+  'R/P0.5M': 'semimonthly',
+  'P/P4M': 'three times a year',
+  'R/P1W': 'weekly',
+  'R/PT1H': 'hourly',
+  irregular: 'irregularly',
+};
+
+export default frequencyMap;

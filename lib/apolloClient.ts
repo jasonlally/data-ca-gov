@@ -1,13 +1,12 @@
 import { useMemo } from 'react';
 import getConfig from 'next/config';
-import { ApolloClient } from 'apollo-client';
+import { ApolloClient } from '@apollo/client';
 import {
   InMemoryCache,
   NormalizedCache,
   NormalizedCacheObject,
-} from 'apollo-cache-inmemory';
+} from '@apollo/client/cache';
 import { RestLink } from 'apollo-link-rest';
-import { faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons';
 
 let apolloClient:
   | ApolloClient<NormalizedCache>
@@ -16,10 +15,12 @@ let apolloClient:
 const restLink = new RestLink({
   uri: getConfig().publicRuntimeConfig.DMS + '/api/3/action/',
   endpoints: {
-    wordpress: `https://public-api.wordpress.com/rest/v1.1/sites/${getConfig().publicRuntimeConfig.CMS
-      }/posts/slug:`,
-    'wordpress-posts': `https://public-api.wordpress.com/rest/v1.1/sites/${getConfig().publicRuntimeConfig.CMS
-      }/posts/`,
+    wordpress: `https://public-api.wordpress.com/rest/v1.1/sites/${
+      getConfig().publicRuntimeConfig.CMS
+    }/posts/slug:`,
+    'wordpress-posts': `https://public-api.wordpress.com/rest/v1.1/sites/${
+      getConfig().publicRuntimeConfig.CMS
+    }/posts/`,
   },
   typePatcher: {
     Search: (data: any): any => {
@@ -43,7 +44,9 @@ const restLink = new RestLink({
         data.result.__typename = 'Package';
         if (data.result.organization != null) {
           data.result.organization.__typename = 'Organization';
-          data.result.organization = processOrganizationResult(data.result.organization);
+          data.result.organization = processOrganizationResult(
+            data.result.organization
+          );
         }
 
         if (data.result.resources != null) {
@@ -64,18 +67,19 @@ const restLink = new RestLink({
       if (data.result != null) {
         data.result.__typename = 'Data';
         if (data.result._links != null) {
-          data.result._links.__typename = 'Links'
+          data.result._links.__typename = 'Links';
         }
       }
       return data;
-    }
+    },
   },
 });
 
 function processOrganizationResult(organization) {
-  organization.title = organization.title.replace("California", "").trim();
+  organization.title = organization.title.replace('California', '').trim();
   if (organization.image_url != null) {
-    organization.image_url = "https://data.ca.gov/uploads/group/" + organization.image_url;
+    organization.image_url =
+      'https://data.ca.gov/uploads/group/' + organization.image_url;
   }
   return organization;
 }

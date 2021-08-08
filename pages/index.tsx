@@ -6,10 +6,10 @@ import { GET_TOTAL_COUNT_QUERY, SEARCH_QUERY } from '../graphql/queries';
 import { loadNamespaces } from './_app';
 import useTranslation from 'next-translate/useTranslation';
 import NavBar from '../components/home/Nav';
-import Total from '../components/_shared/Total'
+import Total from '../components/_shared/Total';
 import RecentDataset from '../components/home/Recent';
 
-const Home: React.FC<{ variables: any, locale: any; locales: any }> = ({
+const Home: React.FC<{ variables: any; locale: any; locales: any }> = ({
   variables,
   locale,
   locales,
@@ -17,7 +17,6 @@ const Home: React.FC<{ variables: any, locale: any; locales: any }> = ({
   const { t } = useTranslation();
   return (
     <>
-
       <Head>
         <title>{t(`common:title`)}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -32,7 +31,11 @@ const Home: React.FC<{ variables: any, locale: any; locales: any }> = ({
           <div className="container mx-auto">
             <div>
               <h1 className="text-md font-bold mb-3 w-4/5 text-white">
-                Search <span className="text-secondary"><Total variables={variables} /></span> datasets from the State of California
+                Search{' '}
+                <span className="text-accent-bright">
+                  <Total variables={variables} />
+                </span>{' '}
+                datasets from the State of California
               </h1>
               <SearchForm />
             </div>
@@ -57,11 +60,11 @@ export const getServerSideProps: GetServerSideProps = async ({
     query: SEARCH_QUERY,
     variables: {
       sort: 'metadata_created desc',
-      rows: 3
+      rows: 3,
     },
   });
 
-  let variables = {}
+  const variables = {};
   await apolloClient.query({
     query: GET_TOTAL_COUNT_QUERY,
     variables,
@@ -73,7 +76,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       _ns: await loadNamespaces(['common'], locale),
       locale,
       locales,
-      variables
+      variables,
     },
   };
 };

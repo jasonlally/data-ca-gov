@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { ErrorMessage } from '../_shared';
 import { GET_RESOURCES_QUERY } from '../../graphql/queries';
 import { ResourceInfo } from 'portal';
