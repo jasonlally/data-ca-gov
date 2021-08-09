@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import getConfig from 'next/config';
-import { ApolloClient } from '@apollo/client';
+import { ApolloClient, ApolloLink } from '@apollo/client';
 import {
   InMemoryCache,
   NormalizedCache,
@@ -86,7 +86,7 @@ function processOrganizationResult(organization) {
 
 function createApolloClient() {
   return new ApolloClient({
-    link: restLink,
+    link: (restLink as unknown) as ApolloLink,
     cache: new InMemoryCache(),
   });
 }
